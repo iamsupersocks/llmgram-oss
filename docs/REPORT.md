@@ -8,7 +8,7 @@ LLMgram OSS is a clean public demo repo for the llmgram.app concept. It presents
 
 ### Product preview
 
-![LLMgram preview](assets/llmgram-preview.svg)
+![LLMgram homepage preview](assets/llmgram-home-preview.jpg)
 
 ### Architecture
 

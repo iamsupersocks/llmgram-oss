@@ -6,7 +6,7 @@ This repository is a clean public extraction. It ships with **sample data only**
 
 ## Preview
 
-![LLMgram preview](docs/assets/llmgram-preview.svg)
+![LLMgram homepage preview](docs/assets/llmgram-home-preview.jpg)
 
 ## Architecture
 

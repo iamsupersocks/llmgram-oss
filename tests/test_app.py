@@ -59,6 +59,7 @@ def test_docs_and_ci_exist():
         'docs/ARCHITECTURE.md',
         'docs/PRODUCTION_BLUEPRINT.md',
         'docs/REPORT.md',
+        'docs/assets/llmgram-home-preview.jpg',
         'docs/assets/llmgram-preview.svg',
         'docs/assets/llmgram-architecture.svg',
         '.github/workflows/ci.yml',
