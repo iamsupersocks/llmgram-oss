@@ -1,0 +1,171 @@
+openapi: 3.1.0
+info:
+  title: LLMgram OSS API
+  version: 0.1.0
+  description: Demo API contract for an AI signal intelligence stack.
+servers:
+  - url: http://127.0.0.1:5000
+    description: Local demo
+paths:
+  /api/signals:
+    get:
+      summary: Query ranked AI signals
+      operationId: querySignals
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: q
+          in: query
+          schema:
+            type: string
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Signal list wrapper
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Signal'
+  /api/weekly:
+    get:
+      summary: Return current weekly digest
+      operationId: getWeeklyDigest
+      responses:
+        '200':
+          description: Weekly digest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeeklyDigest'
+  /api/sources:
+    get:
+      summary: Return configured sample sources
+      operationId: getSources
+      responses:
+        '200':
+          description: Source list wrapper
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Source'
+  /api/stats:
+    get:
+      summary: Return public dashboard stats
+      operationId: getStats
+      responses:
+        '200':
+          description: Stats object
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  schemas:
+    Signal:
+      type: object
+      required: [id, rank, title, summary, category, source, url, score, confidence]
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        rank:
+          type: integer
+        title:
+          type: string
+        summary:
+          type: string
+        category:
+          type: string
+        source:
+          type: string
+        url:
+          type: string
+          format: uri
+        lab:
+          type: string
+        score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        confidence:
+          type: integer
+          minimum: 0
+          maximum: 100
+        impact:
+          type: string
+          enum: [low, medium, high]
+        tags:
+          type: array
+          items:
+            type: string
+        captured_at:
+          type: string
+          format: date-time
+    WeeklyDigest:
+      type: object
+      required: [week, title, subtitle, stats, items]
+      properties:
+        week:
+          type: string
+        title:
+          type: string
+        subtitle:
+          type: string
+        stats:
+          type: object
+          additionalProperties: true
+        items:
+          type: array
+          items:
+            type: object
+            required: [rank, title, takeaway]
+            properties:
+              rank:
+                type: integer
+              title:
+                type: string
+              takeaway:
+                type: string
+    Source:
+      type: object
+      required: [id, kind, name, description, refresh, visibility]
+      properties:
+        id:
+          type: string
+        kind:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        refresh:
+          type: string
+        visibility:
+          type: string

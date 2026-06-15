@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLMgram OSS — AI signal, minus the noise</title>
+  <meta name="description" content="Open-source demo of an AI signal intelligence stack: ingest, triage, rank and publish useful LLM signals.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="nav" aria-label="LLMgram navigation">
+    <a class="brand" href="/"><span>L</span> LLMGRAM OSS</a>
+    <div class="nav-links">
+      <a href="#weekly">Weekly</a>
+      <a href="#signals">Signals</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="/api/signals">API</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow"><span class="dot"></span> Live signal · refreshed every {{ weekly.stats.refresh_cadence }}</div>
+    <h1>LLM<span>gram</span></h1>
+    <p class="hero-copy">Stay current on AI without burning your week on the feed — source ingest, AI triage, editorial ranking and a weekly brief.</p>
+    <div class="actions">
+      <a class="btn primary" href="#weekly">Read this week's signal →</a>
+      <a class="btn" href="/api/weekly">JSON</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats" aria-label="LLMgram at a glance">
+      <div><strong>{{ "{:.1f}k".format(weekly.stats.signals_tracked / 1000) }}</strong><span>signals tracked</span></div>
+      <div><strong>{{ weekly.stats.labs_monitored }}</strong><span>labs monitored</span></div>
+      <div><strong>{{ weekly.stats.repos_curated }}</strong><span>repos curated</span></div>
+      <div><strong>{{ weekly.stats.papers_indexed }}</strong><span>papers indexed</span></div>
+    </section>
+
+    <section id="weekly" class="panel weekly">
+      <div class="panel-kicker">Weekly news · {{ weekly.week }}</div>
+      <h2>{{ weekly.title }}</h2>
+      <p>{{ weekly.subtitle }}</p>
+      <ol class="weekly-list">
+        {% for item in weekly['items'] %}
+        <li>
+          <span>{{ "%02d"|format(item.rank) }}</span>
+          <div><strong>{{ item.title }}</strong><p>{{ item.takeaway }}</p></div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <section id="signals" class="grid">
+      {% for signal in signals %}
+      <article class="card">
+        <div class="card-top"><span>{{ "%02d"|format(signal.rank) }}</span><em>{{ signal.category }}</em></div>
+        <h3>{{ signal.title }}</h3>
+        <p>{{ signal.summary }}</p>
+        <div class="meta">
+          <span>score {{ signal.score }}</span>
+          <span>confidence {{ signal.confidence }}</span>
+          <span>{{ signal.lab }}</span>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+
+    <section id="pipeline" class="panel pipeline">
+      <div class="panel-kicker">How LLMgram works</div>
+      <h2>Source ingest → AI triage → editorial ranking → weekly signal.</h2>
+      <div class="steps">
+        <div><strong>01</strong><span>Collect</span><p>Social posts, repos, papers, releases and manual links.</p></div>
+        <div><strong>02</strong><span>Triage</span><p>Models classify relevance, novelty, risk and builder value.</p></div>
+        <div><strong>03</strong><span>Review</span><p>Humans keep provenance, reject hype and rank what matters.</p></div>
+        <div><strong>04</strong><span>Publish</span><p>APIs, RSS, weekly brief, radars and downstream knowledge base.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>LLMgram OSS · sample data only · bring your own sources</footer>
+</body>
+</html>

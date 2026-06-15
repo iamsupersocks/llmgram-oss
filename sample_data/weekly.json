@@ -1,0 +1,34 @@
+{
+  "week": "2026-W25",
+  "title": "The LLM week, compressed into one readable brief",
+  "subtitle": "A builder-focused digest of models, agents, evals, infra and product shifts.",
+  "stats": {
+    "signals_tracked": 14200,
+    "labs_monitored": 107,
+    "repos_curated": 2838,
+    "papers_indexed": 115,
+    "refresh_cadence": "2h"
+  },
+  "items": [
+    {
+      "rank": 1,
+      "title": "Realtime voice becomes context-aware",
+      "takeaway": "The useful unit is not audio alone; it is audio plus working documents, tools and permissions."
+    },
+    {
+      "rank": 2,
+      "title": "Workplace agents hit the reliability wall",
+      "takeaway": "Completion rates rise, but safety and rollback still decide production adoption."
+    },
+    {
+      "rank": 3,
+      "title": "Evaluation quality becomes product infrastructure",
+      "takeaway": "LLM-as-judge variance is a system design problem, not a leaderboard footnote."
+    },
+    {
+      "rank": 4,
+      "title": "Open weights need runtime leverage",
+      "takeaway": "Local/open models become strategically useful when wrapped in tools, queues, memory and human review."
+    }
+  ]
+}

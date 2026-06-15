@@ -1,0 +1,34 @@
+[
+  {
+    "id": "src-x-list",
+    "kind": "social",
+    "name": "Trusted AI/X accounts",
+    "description": "Curated public social sources used for early product, model and research signals.",
+    "refresh": "2h",
+    "visibility": "public-demo"
+  },
+  {
+    "id": "src-github",
+    "kind": "code",
+    "name": "GitHub repositories",
+    "description": "Repositories, releases and PRs that indicate shipped agent/model infrastructure.",
+    "refresh": "6h",
+    "visibility": "public-demo"
+  },
+  {
+    "id": "src-papers",
+    "kind": "research",
+    "name": "Research papers",
+    "description": "Papers from tracked labs and researchers, scored for builder relevance.",
+    "refresh": "24h",
+    "visibility": "public-demo"
+  },
+  {
+    "id": "src-manual",
+    "kind": "human",
+    "name": "Manual editorial review",
+    "description": "Human curation and final ranking before weekly publication.",
+    "refresh": "weekly",
+    "visibility": "public-demo"
+  }
+]
